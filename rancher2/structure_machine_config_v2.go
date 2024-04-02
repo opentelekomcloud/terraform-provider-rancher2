@@ -17,15 +17,16 @@ const (
 //Types
 
 type machineConfigV2 struct {
-	metav1.TypeMeta     `json:",inline"`
-	metav1.ObjectMeta   `json:"metadata,omitempty"`
-	Amazonec2Config     *MachineConfigV2Amazonec2     `json:"amazonec2Config,omitempty" yaml:"amazonec2Config,omitempty"`
-	AzureConfig         *MachineConfigV2Azure         `json:"azureConfig,omitempty" yaml:"azureConfig,omitempty"`
-	DigitaloceanConfig  *MachineConfigV2Digitalocean  `json:"digitaloceanConfig,omitempty" yaml:"digitaloceanConfig,omitempty"`
-	HarvesterConfig     *MachineConfigV2Harvester     `json:"harvesterConfig,omitempty" yaml:"harvesterConfig,omitempty"`
-	LinodeConfig        *MachineConfigV2Linode        `json:"linodeConfig,omitempty" yaml:"linodeConfig,omitempty"`
-	OpenstackConfig     *MachineConfigV2Openstack     `json:"openstackConfig,omitempty" yaml:"openstackConfig,omitempty"`
-	VmwarevsphereConfig *MachineConfigV2Vmwarevsphere `json:"vmwarevsphereConfig,omitempty" yaml:"vmwarevsphereConfig,omitempty"`
+	metav1.TypeMeta        `json:",inline"`
+	metav1.ObjectMeta      `json:"metadata,omitempty"`
+	Amazonec2Config        *MachineConfigV2Amazonec2        `json:"amazonec2Config,omitempty" yaml:"amazonec2Config,omitempty"`
+	AzureConfig            *MachineConfigV2Azure            `json:"azureConfig,omitempty" yaml:"azureConfig,omitempty"`
+	DigitaloceanConfig     *MachineConfigV2Digitalocean     `json:"digitaloceanConfig,omitempty" yaml:"digitaloceanConfig,omitempty"`
+	HarvesterConfig        *MachineConfigV2Harvester        `json:"harvesterConfig,omitempty" yaml:"harvesterConfig,omitempty"`
+	LinodeConfig           *MachineConfigV2Linode           `json:"linodeConfig,omitempty" yaml:"linodeConfig,omitempty"`
+	OpenstackConfig        *MachineConfigV2Openstack        `json:"openstackConfig,omitempty" yaml:"openstackConfig,omitempty"`
+	OpentelekomcloudConfig *MachineConfigV2Opentelekomcloud `json:"opentelekomcloudConfig,omitempty" yaml:"opentelekomcloudConfig,omitempty"`
+	VmwarevsphereConfig    *MachineConfigV2Vmwarevsphere    `json:"vmwarevsphereConfig,omitempty" yaml:"vmwarevsphereConfig,omitempty"`
 }
 
 type MachineConfigV2 struct {
@@ -69,6 +70,11 @@ func flattenMachineConfigV2(d *schema.ResourceData, in *MachineConfigV2) error {
 		}
 	case machineConfigV2OpenstackKind:
 		err := d.Set("openstack_config", flattenMachineConfigV2Openstack(in.OpenstackConfig))
+		if err != nil {
+			return err
+		}
+	case machineConfigV2OpentelekomcloudKind:
+		err := d.Set("opentelekomcloud_config", flattenMachineConfigV2Opentelekomcloud(in.OpentelekomcloudConfig))
 		if err != nil {
 			return err
 		}
@@ -139,6 +145,9 @@ func expandMachineConfigV2(in *schema.ResourceData) *MachineConfigV2 {
 	}
 	if v, ok := in.Get("openstack_config").([]interface{}); ok && len(v) > 0 {
 		obj.OpenstackConfig = expandMachineConfigV2Openstack(v, obj)
+	}
+	if v, ok := in.Get("opentelekomcloud_config").([]interface{}); ok && len(v) > 0 {
+		obj.OpentelekomcloudConfig = expandMachineConfigV2Opentelekomcloud(v, obj)
 	}
 	if v, ok := in.Get("vsphere_config").([]interface{}); ok && len(v) > 0 {
 		obj.VmwarevsphereConfig = expandMachineConfigV2Vmwarevsphere(v, obj)
