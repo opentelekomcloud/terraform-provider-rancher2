@@ -148,8 +148,6 @@ func machineConfigV2OpentelekomcloudFields() map[string]*schema.Schema {
 		},
 		"region": {
 			Type:        schema.TypeString,
-			Optional:    true,
-			Computed:    true,
 			Required:    true,
 			Description: "Region name",
 		},
