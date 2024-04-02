@@ -30,9 +30,9 @@ type machineConfigV2Opentelekomcloud struct {
 	FlavorName        string `json:"flavorName,omitempty" yaml:"flavorName,omitempty"`
 	BandwidthSize     string `json:"bandwidthSize,omitempty" yaml:"bandwidthSize,omitempty"`
 	BandwidthType     string `json:"bandwidthType,omitempty" yaml:"bandwidthType,omitempty"`
-	ImageId           string `json:"imageId,omitempty" yaml:"imageId,omitempty"`
+	ImageID           string `json:"imageId,omitempty" yaml:"imageId,omitempty"`
 	ImageName         string `json:"imageName,omitempty" yaml:"imageName,omitempty"`
-	IpVersion         string `json:"ipVersion,omitempty" yaml:"ipVersion,omitempty"`
+	IPVersion         string `json:"ipVersion,omitempty" yaml:"ipVersion,omitempty"`
 	KeypairName       string `json:"keypairName,omitempty" yaml:"keypairName,omitempty"`
 	Password          string `json:"password,omitempty" yaml:"password,omitempty"`
 	PrivateKeyFile    string `json:"privateKeyFile,omitempty" yaml:"privateKeyFile,omitempty"`
@@ -46,8 +46,8 @@ type machineConfigV2Opentelekomcloud struct {
 	ServerGroupID     string `json:"serverGroupID,omitempty" yaml:"serverGroupID,omitempty"`
 	SkipDefaultSg     bool   `json:"skipDefaultSg,omitempty"  yaml:"skipDefaultSg,omitempty"`
 	SkipEip           bool   `json:"skipEip,omitempty"  yaml:"skipEip,omitempty"`
-	SshPort           string `json:"sshPort,omitempty" yaml:"sshPort,omitempty"`
-	SshUser           string `json:"sshUser,omitempty" yaml:"sshUser,omitempty"`
+	SSHPort           string `json:"sshPort,omitempty" yaml:"sshPort,omitempty"`
+	SSHUser           string `json:"sshUser,omitempty" yaml:"sshUser,omitempty"`
 	SubnetID          string `json:"subnetId,omitempty" yaml:"subnetId,omitempty"`
 	SubnetName        string `json:"subnetName,omitempty" yaml:"subnetName,omitempty"`
 	Token             string `json:"token,omitempty"  yaml:"token,omitempty"`
@@ -87,9 +87,9 @@ func flattenMachineConfigV2Opentelekomcloud(in *MachineConfigV2Opentelekomcloud)
 	obj["flavor_name"] = in.FlavorName
 	obj["bandwidth_size"] = in.BandwidthSize
 	obj["bandwidth_type"] = in.BandwidthType
-	obj["image_id"] = in.ImageId
+	obj["image_id"] = in.ImageID
 	obj["image_name"] = in.ImageName
-	obj["ip_version"] = in.IpVersion
+	obj["ip_version"] = in.IPVersion
 	obj["keypair_name"] = in.KeypairName
 	obj["password"] = in.Password
 	obj["private_key_file"] = in.PrivateKeyFile
@@ -103,8 +103,8 @@ func flattenMachineConfigV2Opentelekomcloud(in *MachineConfigV2Opentelekomcloud)
 	obj["server_group_id"] = in.ServerGroupID
 	obj["skip_default_sg"] = in.SkipDefaultSg
 	obj["skip_eip"] = in.SkipEip
-	obj["ssh_port"] = in.SshPort
-	obj["ssh_user"] = in.SshUser
+	obj["ssh_port"] = in.SSHPort
+	obj["ssh_user"] = in.SSHUser
 	obj["subnet_id"] = in.SubnetID
 	obj["subnet_name"] = in.SubnetName
 	obj["token"] = in.Token
@@ -178,13 +178,13 @@ func expandMachineConfigV2Opentelekomcloud(p []interface{}, source *MachineConfi
 		obj.BandwidthType = v
 	}
 	if v, ok := in["image_id"].(string); ok && len(v) > 0 {
-		obj.ImageId = v
+		obj.ImageID = v
 	}
 	if v, ok := in["image_name"].(string); ok && len(v) > 0 {
 		obj.ImageName = v
 	}
 	if v, ok := in["ip_version"].(string); ok && len(v) > 0 {
-		obj.IpVersion = v
+		obj.IPVersion = v
 	}
 	if v, ok := in["keypair_name"].(string); ok && len(v) > 0 {
 		obj.KeypairName = v
@@ -226,10 +226,10 @@ func expandMachineConfigV2Opentelekomcloud(p []interface{}, source *MachineConfi
 		obj.SkipEip = v
 	}
 	if v, ok := in["ssh_port"].(string); ok && len(v) > 0 {
-		obj.SshPort = v
+		obj.SSHPort = v
 	}
 	if v, ok := in["ssh_user"].(string); ok && len(v) > 0 {
-		obj.SshUser = v
+		obj.SSHUser = v
 	}
 	if v, ok := in["subnet_id"].(string); ok && len(v) > 0 {
 		obj.SubnetID = v
