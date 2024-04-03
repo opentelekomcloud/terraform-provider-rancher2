@@ -29,7 +29,6 @@ func machineConfigV2OpentelekomcloudFields() map[string]*schema.Schema {
 		},
 		"availability_zone": {
 			Type:        schema.TypeString,
-			Optional:    true,
 			Required:    true,
 			Description: "OpenTelekomCloud Availability zone",
 		},
