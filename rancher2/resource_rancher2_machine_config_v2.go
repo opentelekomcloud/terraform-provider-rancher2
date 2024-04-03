@@ -223,6 +223,13 @@ func createMachineConfigV2(c *Config, obj *MachineConfigV2) (*MachineConfigV2, e
 		out.ID = resp.ID
 		out.TypeMeta = resp.TypeMeta
 		out.ObjectMeta = resp.ObjectMeta
+	case machineConfigV2OpentelekomcloudKind:
+		resp := &MachineConfigV2Opentelekomcloud{}
+		err = c.createObjectV2(rancher2DefaultLocalClusterID, machineConfigV2OpentelekomcloudAPIType, obj.OpentelekomcloudConfig, resp)
+		out.OpentelekomcloudConfig = resp
+		out.ID = resp.ID
+		out.TypeMeta = resp.TypeMeta
+		out.ObjectMeta = resp.ObjectMeta
 	case machineConfigV2VmwarevsphereKind:
 		resp := &MachineConfigV2Vmwarevsphere{}
 		err = c.createObjectV2(rancher2DefaultLocalClusterID, machineConfigV2VmwarevsphereAPIType, obj.VmwarevsphereConfig, resp)
@@ -325,6 +332,16 @@ func getMachineConfigV2ByID(c *Config, id, kind string) (*MachineConfigV2, error
 		out.Type = resp.Type
 		out.TypeMeta = resp.TypeMeta
 		out.ObjectMeta = resp.ObjectMeta
+	case machineConfigV2OpentelekomcloudKind:
+		resp := &MachineConfigV2Opentelekomcloud{}
+		err = c.getObjectV2ByID(rancher2DefaultLocalClusterID, id, machineConfigV2OpentelekomcloudAPIType, resp)
+		out.OpentelekomcloudConfig = resp
+		out.ID = resp.ID
+		out.Links = resp.Links
+		out.Actions = resp.Actions
+		out.Type = resp.Type
+		out.TypeMeta = resp.TypeMeta
+		out.ObjectMeta = resp.ObjectMeta
 	case machineConfigV2VmwarevsphereKind:
 		resp := &MachineConfigV2Vmwarevsphere{}
 		err = c.getObjectV2ByID(rancher2DefaultLocalClusterID, id, machineConfigV2VmwarevsphereAPIType, resp)
@@ -397,6 +414,13 @@ func updateMachineConfigV2(c *Config, obj *MachineConfigV2) (*MachineConfigV2, e
 		resp := &MachineConfigV2Openstack{}
 		err = c.updateObjectV2(rancher2DefaultLocalClusterID, obj.ID, machineConfigV2OpenstackAPIType, obj.OpenstackConfig, resp)
 		out.OpenstackConfig = resp
+		out.ID = resp.ID
+		out.TypeMeta = resp.TypeMeta
+		out.ObjectMeta = resp.ObjectMeta
+	case machineConfigV2OpentelekomcloudKind:
+		resp := &MachineConfigV2Opentelekomcloud{}
+		err = c.updateObjectV2(rancher2DefaultLocalClusterID, obj.ID, machineConfigV2OpentelekomcloudAPIType, obj.OpentelekomcloudConfig, resp)
+		out.OpentelekomcloudConfig = resp
 		out.ID = resp.ID
 		out.TypeMeta = resp.TypeMeta
 		out.ObjectMeta = resp.ObjectMeta

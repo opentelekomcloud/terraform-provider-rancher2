@@ -6,7 +6,7 @@ page_title: "rancher2_machine_config_v2 Resource"
 
 Provides a Rancher v2 Machine config v2 resource. This can be used to create Machine Config v2 for Rancher v2 and retrieve their information. This resource is available from Rancher v2.6.0 and above.
 
-The supported cloud providers includes `amazonec2`, `azure`, `digitalocean`, `harvester`, `linode`, `openstack`, and `vsphere`.
+The supported cloud providers includes `amazonec2`, `azure`, `digitalocean`, `harvester`, `linode`, `openstack`, `opentelekomcloud` and `vsphere`.
 
 ## Example Usage
 
@@ -291,6 +291,53 @@ The following attributes are exported:
 > **Note:**: `Required+` denotes that either the _name or _id is required but you cannot use both.
 > **Note:**: `Required++` denotes that either the _name or _id is required unless `application_credential_id` is defined.
 > **Note for OpenStack users:**: `keypair_name` is required to be in the schema even if there are no references in rancher itself
+
+### `opentelekomcloud_config`
+
+#### Arguments
+
+* `auth_url` - (Required) OpenTelekomCloud authentication URL (string)
+* `access_key` - (Optional/Sensitive) OpenTelekomCloud access key (string)
+* `secret_key` - (Optional/Sensitive) OpenTelekomCloud secret key (string)
+* `availability_zone` - (Required) OpenTelekomCloud availability zone (string)
+* `ca_cert` - (Optional) CA certificate bundle to verify against (string)
+* `domain_id` - (Required+) OpenTelekomCloud domain ID. Conflicts with `domain_name` (string)
+* `domain_name` - (Required+) OpenTelekomCloud domain name. Conflicts with `domain_id` (string)
+* `eip` - (Optional) OpenTelekomCloud elastic ip address (string)
+* `eip_type` - (Optional) OpenTelekomCloud elastic ip type. Default `5_bgp` (string)
+* `endpoint_type` - (Optional) OpenTelekomCloud endpoint type. Default `public` (string)
+* `flavor_id` - (Optional) OpenTelekomCloud flavor id to use for the instance (string)
+* `flavor_name` - (Optional) OpenTelekomCloud flavor name to use for the instance. Default `s3.xlarge.2` (string)
+* `bandwidth_size` - (Optional) OpenTelekomCloud elastic IP bandwidth size. Default `100` (string)
+* `bandwidth_type` - (Optional) OpenTelekomCloud elastic IP bandwidth type. Default `PER` (string)
+* `image_id` - (Required+) OpenTelekomCloud image id to use for the instance (string)
+* `image_name` - (Required+) OpenTelekomCloud image name to use for the instance (string)
+* `ip_version` - (Optional) OpenTelekomCloud version of IP address assigned for the machine. Default `4` (string)
+* `keypair_name` - (Optional) OpenTelekomCloud keypair to use to SSH to the instance (string)
+* `password` - (Optional/Sensitive) OpenTelekomCloud password  (string)
+* `private_key_file` - (Optional) Private key content to use for SSH (string)
+* `project_id` - (Required+) OpenTelekomCloud project id. Conflicts with `project_name` (string)
+* `project_name` - (Required+) OpenTelekomCloud project name. Conflicts with `project_id` (string)
+* `region` - (Required) OpenTelekomCloud region name (string)
+* `root_volume_size` - (Optional) OpenTelekomCloud volume size (GiB). Default `40` (string)
+* `root_volume_type` - (Optional) OpenTelekomCloud volume type. Default `SSD` (string)
+* `security_groups` - (Optional) OpenTelekomCloud list of security groups for the machine (list)
+* `server_group` - (Optional) OpenTelekomCloud server group where server will be created (string)
+* `server_group_id` - (Optional) OpenTelekomCloud server group id where server will be created (string)
+* `skip_default_sg` - (Optional) Parameter to skip default security group creation (bool)
+* `skip_eip` - (Optional) Parameter to skip eip creation and set machine IP to instance local IP (bool)
+* `ssh_port` - (Optional) OpenTelekomCloud SSH port * Default `22` (string)
+* `ssh_user` - (Optional) OpenTelekomCloud SSH user * Default: `ubuntu` (string)
+* `subnet_id` - (Required++) OpenTelekomCloud subnet ID of the machine. Conflicts with `subnet_name` (string)
+* `subnet_name` - (Required++) OpenTelekomCloud subnet name of the machine. Conflicts with `subnet_id` (string)
+* `token` - (Optional/Sensitive) OpenTelekomCloud authentication token (string)
+* `tags` - (Optional) OpenTelekomCloud tags (e.g. key1.value1,key2.value2,key3) (string)
+* `user_data_file` - (Optional) File containing an OpenTelekomCloud userdata script (string)
+* `user_data_raw` - (Optional) Contents of the OpenTelekomCloud userdata as a string (string)
+* `username` - (Optional) OpenTelekomCloud username (string)
+* `vpc_id` - (Required+) OpenTelekomCloud virtual private cloud id. Conflicts with `vpc_name` (string)
+* `vpc_name` - (Required+) OpenTelekomCloud virtual private cloud name. Conflicts with `vpc_id` (string)
+> **Note:**: `Required+` denotes that either the _name or _id is required, but you cannot use both.
 
 ### `vsphere_config`
 

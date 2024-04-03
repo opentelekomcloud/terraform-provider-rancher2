@@ -11,6 +11,7 @@ var allMachineDriverConfigFields = []string{
 	"harvester_config",
 	"linode_config",
 	"openstack_config",
+	"opentelekomcloud_config",
 	"vsphere_config",
 }
 
@@ -90,6 +91,15 @@ func machineConfigV2Fields() map[string]*schema.Schema {
 			ConflictsWith: getConflicts(allMachineDriverConfigFields, "openstack_config"),
 			Elem: &schema.Resource{
 				Schema: machineConfigV2OpenstackFields(),
+			},
+		},
+		"opentelekomcloud_config": {
+			Type:          schema.TypeList,
+			MaxItems:      1,
+			Optional:      true,
+			ConflictsWith: getConflicts(allMachineDriverConfigFields, "opentelekomcloud_config"),
+			Elem: &schema.Resource{
+				Schema: machineConfigV2OpentelekomcloudFields(),
 			},
 		},
 		"vsphere_config": {
