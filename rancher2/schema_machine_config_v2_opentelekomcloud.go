@@ -30,7 +30,7 @@ func machineConfigV2OpentelekomcloudFields() map[string]*schema.Schema {
 		"availability_zone": {
 			Type:        schema.TypeString,
 			Optional:    true,
-			Default:     "eu-de-01",
+			Required:    true,
 			Description: "OpenTelekomCloud Availability zone",
 		},
 		"ca_cert": {
@@ -40,15 +40,19 @@ func machineConfigV2OpentelekomcloudFields() map[string]*schema.Schema {
 			Description: "CA certificate bundle to verify against",
 		},
 		"domain_id": {
-			Type:        schema.TypeString,
-			Optional:    true,
-			Computed:    true,
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+			ExactlyOneOf: []string{"opentelekomcloud_config.0.domain_id",
+				"opentelekomcloud_config.0.domain_name"},
 			Description: "OpenTelekomCloud Domain ID",
 		},
 		"domain_name": {
-			Type:        schema.TypeString,
-			Optional:    true,
-			Computed:    true,
+			Type:     schema.TypeString,
+			Optional: true,
+			Computed: true,
+			ExactlyOneOf: []string{"opentelekomcloud_config.0.domain_id",
+				"opentelekomcloud_config.0.domain_name"},
 			Description: "OpenTelekomCloud Domain Name",
 		},
 		"eip": {

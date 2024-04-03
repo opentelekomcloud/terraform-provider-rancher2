@@ -315,7 +315,7 @@ The following attributes are exported:
 * `ip_version` - (Optional) OpenTelekomCloud version of IP address assigned for the machine. Default `4` (string)
 * `keypair_name` - (Optional) OpenTelekomCloud keypair to use to SSH to the instance (string)
 * `password` - (Optional/Sensitive) OpenTelekomCloud password  (string)
-* `private_key_file` - (Optional/Sensitive) Private key content to use for SSH (string)
+* `private_key_file` - (Optional) Private key content to use for SSH (string)
 * `project_id` - (Required+) OpenTelekomCloud project id. Conflicts with `project_name` (string)
 * `project_name` - (Required+) OpenTelekomCloud project name. Conflicts with `project_id` (string)
 * `region` - (Required) OpenTelekomCloud region name (string)
@@ -331,13 +331,13 @@ The following attributes are exported:
 * `subnet_id` - (Required++) OpenTelekomCloud subnet ID of the machine. Conflicts with `subnet_name` (string)
 * `subnet_name` - (Required++) OpenTelekomCloud subnet name of the machine. Conflicts with `subnet_id` (string)
 * `token` - (Optional/Sensitive) OpenTelekomCloud authentication token (string)
-* `tags` - (Optional/Sensitive) OpenTelekomCloud tags (e.g. key1,value1,key2,value2) (string)
+* `tags` - (Optional) OpenTelekomCloud tags (e.g. key1,value1,key2,value2) (string)
 * `user_data_file` - (Optional) File containing an OpenTelekomCloud userdata script (string)
 * `user_data_raw` - (Optional) Contents of the OpenTelekomCloud userdata as a string (string)
 * `username` - (Optional) OpenTelekomCloud username (string)
 * `vpc_id` - (Required+) OpenTelekomCloud virtual private cloud id. Conflicts with `vpc_name` (string)
 * `vpc_name` - (Required+) OpenTelekomCloud virtual private cloud name. Conflicts with `vpc_id` (string)
-> **Note:**: `Required+` denotes that either the _name or _id is required but you cannot use both.
+> **Note:**: `Required+` denotes that either the _name or _id is required, but you cannot use both.
 
 ### `vsphere_config`
 
