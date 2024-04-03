@@ -331,7 +331,7 @@ The following attributes are exported:
 * `subnet_id` - (Required++) OpenTelekomCloud subnet ID of the machine. Conflicts with `subnet_name` (string)
 * `subnet_name` - (Required++) OpenTelekomCloud subnet name of the machine. Conflicts with `subnet_id` (string)
 * `token` - (Optional/Sensitive) OpenTelekomCloud authentication token (string)
-* `tags` - (Optional) OpenTelekomCloud tags (e.g. key1,value1,key2,value2) (string)
+* `tags` - (Optional) OpenTelekomCloud tags (e.g. key1.value1,key2.value2,key3) (string)
 * `user_data_file` - (Optional) File containing an OpenTelekomCloud userdata script (string)
 * `user_data_raw` - (Optional) Contents of the OpenTelekomCloud userdata as a string (string)
 * `username` - (Optional) OpenTelekomCloud username (string)

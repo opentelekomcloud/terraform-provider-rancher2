@@ -13,14 +13,14 @@ func machineConfigV2OpentelekomcloudFields() map[string]*schema.Schema {
 			Optional:    true,
 			Computed:    true,
 			Sensitive:   true,
-			Description: "Access key used for AK/SK auth ",
+			Description: "Access key used for AK/SK auth",
 		},
 		"secret_key": {
 			Type:        schema.TypeString,
 			Optional:    true,
 			Computed:    true,
 			Sensitive:   true,
-			Description: "Access key used for AK/SK auth ",
+			Description: "Access key used for AK/SK auth",
 		},
 		"auth_url": {
 			Type:        schema.TypeString,
@@ -237,7 +237,7 @@ func machineConfigV2OpentelekomcloudFields() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Optional:    true,
 			Computed:    true,
-			Description: "OTC Tags (e.g. key1,value1,key2,value2)",
+			Description: "OTC Tags (e.g. key1.value1,key2.value2,key3)",
 		},
 		"user_data_file": {
 			Type:        schema.TypeString,
@@ -253,7 +253,7 @@ func machineConfigV2OpentelekomcloudFields() map[string]*schema.Schema {
 			Type:        schema.TypeString,
 			Optional:    true,
 			Computed:    true,
-			Description: "OpenTelekomCloud username ",
+			Description: "OpenTelekomCloud username",
 		},
 		"vpc_id": {
 			Type:     schema.TypeString,
