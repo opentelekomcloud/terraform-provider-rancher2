@@ -180,23 +180,27 @@ resource "` + testAccRancher2CloudCredentialType + `" "foo-vsphere" {
  `
 	testAccRancher2CloudCredentialConfigOpenTelekomCloud = `
 resource "` + testAccRancher2CloudCredentialType + `" "foo-otc" {
-  name = "foo-vsphere"
+  name = "foo-otc"
   description= "Terraform cloudCredential acceptance test"
-  vsphere_credential_config {
+  opentelekomcloud_credential_config {
+    user_name = "user"
     password = "XXXXXXXXXXXXXXXXXXXX"
-    username = "user"
-    vcenter = "vcenter"
+    access_key = "anyaccesskey"
+    secret_key = "anysecretkey"
+    token = "anytoken"
   }
 }
 `
 	testAccRancher2CloudCredentialUpdateConfigOpenTelekomCloud = `
 resource "` + testAccRancher2CloudCredentialType + `" "foo-otc" {
-  name = "foo-vsphere"
+  name = "foo-otc"
   description= "Terraform cloudCredential acceptance test - updated"
-  vsphere_credential_config {
+  opentelekomcloud_credential_config {
+    user_name = "user"
     password = "YYYYYYYYYYYYYYYYYYYY"
-    username = "user"
-    vcenter = "vcenter2"
+    access_key = "anyaccesskey2"
+    secret_key = "anysecretkey2"
+    token = "anytoken2"
   }
 }
  `
@@ -722,8 +726,10 @@ func TestAccRancher2CloudCredential_basic_OTC(t *testing.T) {
 					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "name", "foo-otc"),
 					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "description", "Terraform cloudCredential acceptance test"),
 					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "driver", openTelekomCloudConfigDriver),
-					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "open_telekom_cloud_credential_config.0.password", "XXXXXXXXXXXXXXXXXXXX"),
-					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "open_telekom_cloud_credential_config.0.vcenter", "vcenter"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.password", "XXXXXXXXXXXXXXXXXXXX"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.access_key", "anyaccesskey"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.secret_key", "anysecretkey"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.token", "anytoken"),
 				),
 			},
 			{
@@ -733,8 +739,10 @@ func TestAccRancher2CloudCredential_basic_OTC(t *testing.T) {
 					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "name", "foo-otc"),
 					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "description", "Terraform cloudCredential acceptance test - updated"),
 					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "driver", openTelekomCloudConfigDriver),
-					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "open_telekom_cloud_credential_config.0.password", "YYYYYYYYYYYYYYYYYYYY"),
-					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "open_telekom_cloud_credential_config.0.vcenter", "vcenter2"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.password", "YYYYYYYYYYYYYYYYYYYY"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.access_key", "anyaccesskey2"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.secret_key", "anysecretkey2"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.token", "anytoken2"),
 				),
 			},
 			{
@@ -744,9 +752,10 @@ func TestAccRancher2CloudCredential_basic_OTC(t *testing.T) {
 					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "name", "foo-otc"),
 					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "description", "Terraform cloudCredential acceptance test"),
 					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "driver", openTelekomCloudConfigDriver),
-					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "open_telekom_cloud_credential_config.0.password", "XXXXXXXXXXXXXXXXXXXX"),
-					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "open_telekom_cloud_credential_config.0.vcenter", "vcenter"),
-				),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.password", "XXXXXXXXXXXXXXXXXXXX"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.access_key", "anyaccesskey"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.secret_key", "anysecretkey"),
+					resource.TestCheckResourceAttr(testAccRancher2CloudCredentialType+".foo-otc", "opentelekomcloud_credential_config.0.token", "anytoken")),
 			},
 		},
 	})

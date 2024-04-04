@@ -137,7 +137,7 @@ func resourceRancher2CloudCredentialUpdate(d *schema.ResourceData, meta interfac
 	case vmwarevsphereConfigDriver:
 		update["vmwarevspherecredentialConfig"] = expandCloudCredentialVsphere(d.Get("vsphere_credential_config").([]interface{}))
 	case openTelekomCloudConfigDriver:
-		update["opentelekomcloudcredentialConfig"] = expandCloudCredentialOpenTelekomCloud(d.Get("open_telekom_cloud_credential_config").([]interface{}))
+		update["opentelekomcloudcredentialConfig"] = expandCloudCredentialOpenTelekomCloud(d.Get("opentelekomcloud_credential_config").([]interface{}))
 	default:
 		return fmt.Errorf("[ERROR] updating cloud credential: Unsupported driver \"%s\"", driver)
 	}

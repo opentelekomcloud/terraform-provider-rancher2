@@ -103,11 +103,11 @@ func flattenCloudCredential(d *schema.ResourceData, in *CloudCredential) error {
 			return err
 		}
 	case openTelekomCloudConfigDriver:
-		v, ok := d.Get("open_telekom_cloud_credential_config").([]interface{})
+		v, ok := d.Get("opentelekomcloud_credential_config").([]interface{})
 		if !ok {
 			v = []interface{}{}
 		}
-		err := d.Set("open_telekom_cloud_credential_config", flattenCloudCredentialOpenTelekomCloud(in.OpenTelekomCloudCredentialConfig, v))
+		err := d.Set("opentelekomcloud_credential_config", flattenCloudCredentialOpenTelekomCloud(in.OpenTelekomCloudCredentialConfig, v))
 		if err != nil {
 			return err
 		}
@@ -194,7 +194,7 @@ func expandCloudCredential(in *schema.ResourceData) *CloudCredential {
 		in.Set("driver", vmwarevsphereConfigDriver)
 	}
 
-	if v, ok := in.Get("open_telekom_cloud_credential_config").([]interface{}); ok && len(v) > 0 {
+	if v, ok := in.Get("opentelekomcloud_credential_config").([]interface{}); ok && len(v) > 0 {
 		obj.OpenTelekomCloudCredentialConfig = expandCloudCredentialOpenTelekomCloud(v)
 		in.Set("driver", openTelekomCloudConfigDriver)
 	}

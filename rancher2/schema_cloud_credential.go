@@ -30,7 +30,7 @@ var allCloudCredentialDriverConfigFields = []string{
 	"openstack_credential_config",
 	"s3_credential_config",
 	"vsphere_credential_config",
-	"open_telekom_cloud_credential_config",
+	"opentelekomcloud_credential_config",
 }
 
 //Schemas
@@ -130,11 +130,11 @@ func cloudCredentialFields() map[string]*schema.Schema {
 				Schema: cloudCredentialVsphereFields(),
 			},
 		},
-		"open_telekom_cloud_credential_config": {
+		"opentelekomcloud_credential_config": {
 			Type:          schema.TypeList,
 			MaxItems:      1,
 			Optional:      true,
-			ConflictsWith: getConflicts(allCloudCredentialDriverConfigFields, "open_telekom_cloud_credential_config"),
+			ConflictsWith: getConflicts(allCloudCredentialDriverConfigFields, "opentelekomcloud_credential_config"),
 			Elem: &schema.Resource{
 				Schema: cloudCredentialOpenTelekomCloudFields(),
 			},
