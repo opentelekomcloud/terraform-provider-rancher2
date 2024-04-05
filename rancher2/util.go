@@ -518,6 +518,19 @@ func toArrayInterfaceSorted(in []string) []interface{} {
 	return out
 }
 
+func toArraySplitComma(in string) []string {
+	return strings.Split(in, ",")
+}
+
+func toArrayJoinComma(slice []interface{}) string {
+	strSlice := make([]string, 0, len(slice))
+	for _, elem := range slice {
+		str, _ := elem.(string)
+		strSlice = append(strSlice, str)
+	}
+	return strings.Join(strSlice, ",")
+}
+
 func toMapString(in map[string]interface{}) map[string]string {
 	out := make(map[string]string)
 	for i, v := range in {
